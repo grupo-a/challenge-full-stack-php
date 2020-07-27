@@ -85,13 +85,25 @@ class StudentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  \App\Students  $students
-     * @return \Illuminate\Http\Response
+     * @param StudentsRequest $request
+     * @param $id
+     * @return JsonResponse
      */
-    public function update(Request $request, Students $students)
+    public function update(StudentsRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $student = Students::findOrFail($id);
+            $student->fill($request->all())->save();
+            DB::commit();
+            return response()->json($student, 200);
+        } catch (ModelNotFoundException $e) {
+            DB::rollback();
+            return response()->json($e->getMessage(), 404);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json($e->getMessage(), 500);
+        }
     }
 
     /**

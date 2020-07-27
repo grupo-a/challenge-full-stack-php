@@ -26,7 +26,11 @@ class StudentsRequest extends FormRequest
         switch($this->method())
         {
             case 'PUT':
-            case 'PATCH':
+                return [
+                    'name' => ['required'],
+                    'email' => ['required', 'email'],
+                ];
+                break;
             case 'POST':
                 return [
                     'name' => ['required'],
@@ -46,11 +50,17 @@ class StudentsRequest extends FormRequest
         switch($this->method())
         {
             case 'PUT':
-            case 'PATCH':
+                return [
+                    'name.required' => 'O campo NOME é obrigatório.',
+                    'email.required' => 'O campo EMAIL é obrigatório.',
+                    'email.email' => 'O EMAIL informado é inválido.'
+                ];
+                break;
             case 'POST':
                 return [
                     'name.required' => 'O campo NOME é obrigatório.',
                     'email.required' => 'O campo EMAIL é obrigatório.',
+                    'email.email' => 'O EMAIL informado é inválido.',
                     'ra.required' => 'O campo RA é obrigatório.',
                     'ra.unique' => 'O RA informado já existente no sistema.',
                     'cpf.required' => 'O campo CPF é obrigatório.',
