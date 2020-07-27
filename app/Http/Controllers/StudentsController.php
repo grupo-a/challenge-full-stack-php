@@ -109,11 +109,21 @@ class StudentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Students  $students
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return JsonResponse
      */
-    public function destroy(Students $students)
+    public function destroy($id)
     {
-        //
+        try {
+            $client = Students::findOrFail($id);
+            $client->delete();
+            return response()->json('success', 204);
+        } catch (ModelNotFoundException $e) {
+            DB::rollback();
+            return response()->json($e->getMessage(), 404);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json($e->getMessage(), 500);
+        }
     }
 }
