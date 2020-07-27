@@ -18,8 +18,5 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    Route::group(['prefix' => 'accounts', 'as' => 'account.'], function () {
-        Route::get('/', ['as' => 'index', 'uses' => 'AccountController@index']);
-});
     Route::resource('students', 'StudentsController');
 });

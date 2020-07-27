@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentsRequest;
 use App\Models\Students;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -56,12 +57,18 @@ class StudentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Students  $students
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return JsonResponse
      */
-    public function show(Students $students)
+    public function show($id)
     {
-        //
+        try {
+            return response()->json(Students::findOrFail($id), 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json($e->getMessage(), 404);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
     }
 
     /**
