@@ -19,7 +19,7 @@
     <div class="navbar-collapse offcanvas-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('students.list')}}">Alunos <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?php echo e(route('students.list')); ?>">Alunos <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Funcionários</a>
@@ -35,3 +35,4 @@
         </ul>
     </div>
 </nav>
+<?php /**PATH C:\wamp64\www\challenge-full-stack-php\resources\views/includes/sidebar.blade.php ENDPATH**/ ?>

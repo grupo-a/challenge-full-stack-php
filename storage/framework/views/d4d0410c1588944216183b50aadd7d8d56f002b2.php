@@ -1,5 +1,4 @@
-@extends('layouts.default')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -22,7 +21,7 @@
                         </div>
                         <form id="student_edit" action="javascript:void(0);" onsubmit="editStudent()" method="PUT">
                             <div class="modal-body">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <input type="hidden" id="student_edit_id" name="student_edit_id" value="">
                                 <div class="form-group">
                                     <label>Nome: </label>
@@ -60,7 +59,7 @@
                         </div>
                         <form id="student_create" action="javascript:void(0);" onsubmit="createStudent()" method="POST">
                             <div class="modal-body">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <div class="form-group">
                                     <label>Nome: </label>
                                     <input name="name" class="form-control" placeholder="Nome" required>
@@ -88,8 +87,8 @@
             </div>
         </div>
     </div>
-@endsection
-@section('scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('scripts'); ?>
     <script>
         $(document).ready(function() {
             $('.cpf').mask('000.000.000-00', {reverse: true});
@@ -276,4 +275,6 @@
             $('#student_create').trigger("reset");
         }
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\challenge-full-stack-php\resources\views/pages/students/index.blade.php ENDPATH**/ ?>

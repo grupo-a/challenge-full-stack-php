@@ -19,6 +19,6 @@ Route::get('/', function () {
 Route::post('/login', array('uses' => 'LoginController@login'));
 Route::group(['prefix' => 'students', 'as' => 'students.'], function () {
     Route::get('/', function () {
-        return view('pages.students');
+        return view('pages.students.index');
     })->name('list');
 });

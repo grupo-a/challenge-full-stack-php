@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        @include('includes.head')
+        <?php echo $__env->make('includes.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </head>
     <style>
         #wrapper {
@@ -54,16 +54,17 @@
         <div class="d-flex" id="wrapper">
             <div id="sidebar-wrapper" class="page-sidebar-wrapper">
                 <div class="page-sidebar">
-                    @include('includes.sidebar')
+                    <?php echo $__env->make('includes.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
             </div>
             <div id="page-content-wrapper">
                 <div class="container-fluid">
-                    @yield('content')
+                    <?php echo $__env->yieldContent('content'); ?>
                 </div>
             </div>
         </div>
-        @include('sweetalert::alert')
+        <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </body>
-    @yield('scripts')
+    <?php echo $__env->yieldContent('scripts'); ?>
 </html>
+<?php /**PATH C:\wamp64\www\challenge-full-stack-php\resources\views/layouts/default.blade.php ENDPATH**/ ?>
